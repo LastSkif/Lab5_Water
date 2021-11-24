@@ -11,9 +11,9 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class WaterRenderer implements GLSurfaceView.Renderer {
 
-    final int N = 100; // длина распространения волны
-    float K = 0.09f; // коэф. деформации поверхности при попадании капли о поверхность
-    float DT = 0.07f; // клэф. распространение волны по поверхности
+    final int N = 75; // длина распространения волны
+    float K = 0.1f; // коэф. деформации поверхности при попадании капли о поверхность
+    float DT = 0.09f; // коэф. распространение волны по поверхности
     int offs = 0;  // смещение
     public P[][] p;
     float[] a; // массив вершин
@@ -40,8 +40,8 @@ public class WaterRenderer implements GLSurfaceView.Renderer {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 p[i][j] = new P();
-                (p[i][j]).x = 2.0f * j / N;
-                (p[i][j]).y = 2.0f * i / N;
+                (p[i][j]).x = 3f * j / N;
+                (p[i][j]).y = 3f * i / N;
                 (p[i][j]).z = 0;
                 (p[i][j]).vz = 0;
             }
@@ -120,7 +120,7 @@ public class WaterRenderer implements GLSurfaceView.Renderer {
             }
         }
 
-        // возвращает деворминованную поверхность в изначальное состояние
+        // возвращает деформинованную поверхность в изначальное состояние
         for (int y = 1; y < N - 1; ++y)
             for (int x = 1; x < N - 1; ++x) {
                 P p0 = p[x][y];
